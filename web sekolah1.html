@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SMP Negeri 1 Cangkringan</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body { box-sizing: border-box; font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; }
+    .hero-bg { background-image: url('sekolah.jpeg'); background-repeat: no-repeat; background-size: cover; background-position: center; }
+    .section.hidden { display: none; }
+    nav { background: linear-gradient(90deg,#fb923c,#fb7040); }
+    .nav-link { color: #1f2937; padding: .5rem 1rem; display:inline-block; border-radius: .375rem; text-decoration:none; }
+    .nav-link:hover { color: white; background: rgba(0,0,0,0.06); }
+    .mobile-menu { display: none; }
+    @media (max-width: 768px) {
+      .mobile-menu { display: block; }
+      .hidden.md\:block { display: none; }
+      .mobile-only { display: block; }
+    }
+    #pdfViewer iframe { border: 1px solid #e5e7eb; border-radius: 8px; }
+  </style>
+</head>
+<body class="font-sans">
+
+  <nav class="fixed w-full top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
+      <div class="flex justify-between items-center">
+        <div class="flex items-center">
+          <div class="w-12 h-12 rounded-full overflow-hidden mr-3 bg-white">
+            <img src="Logo sekolah SPENECA.png" alt="Logo" style="width:100%;height:100%;object-fit:cover;">
+          </div>
+          <div>
+            <div style="font-weight:700;color:#fff;">SMP Negeri 1 Cangkringan</div>
+            <div style="font-size:.8rem;color:rgba(255,255,255,0.9)">Vidya Giri Prastista</div>
+          </div>
+        </div>
+
+        <div class="hidden md:block">
+          <a href="#" class="nav-link" onclick="showSection('home')">Beranda</a>
+          <a href="#" class="nav-link" onclick="showSection('profil')">Profil</a>
+          <a href="#" class="nav-link" onclick="showSection('akademik')">Akademik</a>
+          <a href="#" class="nav-link" onclick="showSection('guru')">Guru</a>
+          <a href="#" class="nav-link" onclick="showSection('galeri')">Galeri</a>
+          <a href="#" class="nav-link" onclick="showSection('datasiswa')">Data Siswa</a>
+        </div>
+
+        <div class="md:hidden">
+          <button class="mobile-menu-btn" onclick="document.querySelector('.mobile-menu').classList.toggle('hidden')">
+            ☰
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="bg-white text-orange-600 py-2">
+      <marquee behavior="scroll" direction="left" scrollamount="5" class="font-semibold">
+        Selamat datang di website resmi SMP Negeri 1 Cangkringan | Informasi PPDB 2024 telah dibuka | Membentuk Generasi Unggul dan Berkarakter
+      </marquee>
+    </div>
+
+    <div class="mobile-menu hidden bg-white px-4 py-3">
+      <a href="#" class="block nav-link" onclick="showSection('home')">Beranda</a>
+      <a href="#" class="block nav-link" onclick="showSection('profil')">Profil</a>
+      <a href="#" class="block nav-link" onclick="showSection('akademik')">Akademik</a>
+      <a href="#" class="block nav-link" onclick="showSection('guru')">Guru</a>
+      <a href="#" class="block nav-link" onclick="showSection('galeri')">Galeri</a>
+      <a href="#" class="block nav-link" onclick="showSection('datasiswa')">Data Siswa</a>
+    </div>
+  </nav>
+
+  <main style="padding-top:120px;">
+
+    <!-- BERANDA -->
+
+<section id="home" class="section" style="min-height:100vh; position:relative;">
+  <!-- Background Gambar -->
+  <div style="
+      background-image: url('sekolah.jpeg');
+      background-size: cover;
+      background-position: center;
+      width: 100%;
+      height: calc(100vh - 80px);
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      color: white;
+      position: relative;
+    ">
+    <!-- Overlay -->
+    <div style="position:absolute;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.45);z-index:0;"></div>
+
+    <!-- Kiri: Informasi / Sambutan -->
+    <div style="flex:1;padding:3rem;z-index:1;">
+      <div style="background-color:rgba(255,255,255,0.15);padding:2rem;border-radius:1rem;max-width:600px;">
+        <p style="font-size:1.2rem;line-height:1.8;">
+        </p>
+      </div>
+    </div>
+
+    <!-- Kanan: Berita Terbaru -->
+    <div style="width:380px;z-index:1;background-color:rgba(255,255,255,0.9);color:#333;border-radius:1rem 0 0 1rem;padding:1.5rem;height:calc(100vh - 100px);overflow:hidden;box-shadow:-4px 0 10px rgba(0,0,0,0.2);display:flex;flex-direction:column;">
+      <h3 style="font-weight:700;color:#fb923c;text-align:center;margin-bottom:1rem;">📰 Berita Terbaru</h3>
+      <div id="newsSlider" style="position:relative;overflow:hidden;flex:1;">
+        <div class="slide" style="position:absolute;opacity:1;transition:opacity .8s;">
+          <h4 style="font-weight:600;">Juara 1 Lomba Sains Kabupaten Sleman</h4>
+          <p style="font-size:.9rem;">Tim IPA SMPN 1 Cangkringan berhasil meraih Juara 1 dalam Lomba Sains Terpadu tingkat Kabupaten Sleman 2025.</p>
+        </div>
+        <div class="slide" style="position:absolute;opacity:0;transition:opacity .8s;">
+          <h4 style="font-weight:600;">Peluncuran Program Literasi Digital</h4>
+          <p style="font-size:.9rem;">Sekolah meluncurkan pelatihan coding dan literasi digital untuk meningkatkan kemampuan teknologi siswa.</p>
+        </div>
+        <div class="slide" style="position:absolute;opacity:0;transition:opacity .8s;">
+          <h4 style="font-weight:600;">Projek P5: Sekolah Hijau & Gotong Royong</h4>
+          <p style="font-size:.9rem;">Siswa berpartisipasi dalam kegiatan penghijauan sekolah sebagai bagian dari Kurikulum Merdeka.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Kepala Sekolah -->
+  <div style="background:#fff;padding:3rem 1rem;">
+    <div style="max-width:900px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:2rem;text-align:center;">
+      
+      <!-- Foto Kepala Sekolah -->
+      <div style="flex:0 0 200px;">
+        <div style="position:relative;">
+          <img src="ks.jpg" alt="Kepala Sekolah" style="width:200px;height:200px;object-fit:cover;border-radius:9999px;border:6px solid #fb923c;box-shadow:0 4px 10px rgba(0,0,0,0.2);">
+          <span style="position:absolute;bottom:-10px;left:50%;transform:translateX(-50%);background:#fb923c;color:white;padding:0.3rem 0.8rem;border-radius:1rem;font-size:.8rem;font-weight:600;">Kepala Sekolah</span>
+        </div>
+      </div>
+
+      <!-- Biodata Kepala Sekolah -->
+      <div style="flex:1 1 400px;text-align:left;">
+        <h3 style="font-weight:700;font-size:1.7rem;color:#fb923c;">Sri Wahyuni, S.Pd., M.Pd.</h3>
+        <p style="color:#374151;margin-top:.5rem;font-style:italic;">"Pendidikan adalah investasi terbaik untuk masa depan bangsa."</p>
+        <ul style="margin-top:1rem;list-style:none;padding:0;color:#374151;line-height:1.6;">
+          <li><strong>Jabatan:</strong> Kepala Sekolah SMP Negeri 1 Cangkringan</li>
+          <li><strong>Pendidikan:</strong> Magister Pendidikan, Universitas Negeri Yogyakarta</li>
+          <li><strong>Visi:</strong> Mewujudkan sekolah unggul dalam prestasi, berkarakter, dan berwawasan lingkungan.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Script slider berita -->
+<script>
+  let currentSlide = 0;
+  const slides = document.querySelectorAll('#newsSlider .slide');
+
+  function showSlide(index) {
+    slides.forEach((slide, i) => {
+      slide.style.opacity = (i === index) ? '1' : '0';
+    });
+  }
+
+  function nextSlide() {
+    currentSlide = (currentSlide + 1) % slides.length;
+    showSlide(currentSlide);
+  }
+
+  setInterval(nextSlide, 5000);
+</script>
+
+</section>
+
+<!-- Script untuk slider berita -->
+<script>
+  let currentSlide = 0;
+  const slides = document.querySelectorAll('#newsSlider .slide');
+  
+  function showSlide(index) {
+    slides.forEach((slide, i) => {
+      slide.style.opacity = (i === index) ? '1' : '0';
+    });
+  }
+  
+  function nextSlide() {
+    currentSlide = (currentSlide + 1) % slides.length;
+    showSlide(currentSlide);
+  }
+  
+  setInterval(nextSlide, 5000);
+</script>
+
+</section>
+
+<!-- Script untuk slide berita -->
+<script>
+  let currentSlide = 0;
+  const slides = document.querySelectorAll('#newsSlider .slide');
+
+  function showSlide(index) {
+    slides.forEach((slide, i) => {
+      slide.style.opacity = (i === index) ? '1' : '0';
+    });
+  }
+
+  function nextSlide() {
+    currentSlide = (currentSlide + 1) % slides.length;
+    showSlide(currentSlide);
+  }
+
+  // Ganti berita setiap 5 detik
+  setInterval(nextSlide, 5000);
+</script>
+
+    </section>
+<!-- Profil Sekolah Section -->
+    <section id="profil" class="section hidden" style="padding:3rem 1rem;background:#f9fafb;">
+      <div style="max-width:1100px;margin:0 auto;">
+        <h2 style="font-size:1.75rem;margin-bottom:1rem">Profil Sekolah</h2>
+        <p>SMP Negeri 1 Cangkringan berdiri sejak 1974...</p>
+        
+                    <!-- Visi Misi -->
+                    <div class="mb-16">
+                        <h2 class="text-3xl font-semibold text-gray-800 mb-8">Visi dan Misi</h2>
+                        <div class="grid md:grid-cols-2 gap-8">
+                            <div class="bg-blue-50 p-8 rounded-lg">
+                                <h3 class="text-2xl font-semibold text-blue-800 mb-4">Visi</h3>
+                                <p class="text-gray-700 text-lg">"SMP Negeri 1 Cangkringan menetapkan visi sekolah sebagai berikut: 
+
+MEWUJUDKAN PESERTA DIDIK YANG BERBUDI PEKERTI LUHUR, BERPRESTASI, BERWAWASAN LINGKUNGAN, BERBUDAYA DAN BERDAYA SAING GLOBAL."</p>
+                            </div>
+                            <div class="bg-green-50 p-8 rounded-lg">
+                                <h3 class="text-2xl font-semibold text-green-800 mb-4">Misi</h3>
+                                <ul class="text-gray-700 space-y-2">
+                                    <li>•Membimbing perkembangan moral dan budi pekerti peserta didik dengan pendidikan karakter bangsa Indonesia.</li>
+                                    <li>• Mewujudkan sekolah inovatif dalam pembelajaran. </li>
+                                    <li>• Mengembangkan manajemen berbasis sekolah yang tangguh. 
+</li>
+                                    <li>• Mewujudkan pembinaan kompetensi peserta didik secara kompetitif. 
+</li>
+                                    <li>• Meningkatkan keterampilan, bakat, dan minat peserta didik melalui bimbingan ekstrakurikuler yang bermutu.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+      </div>
+    </section>
+
+    <!-- AKADEMIK -->
+<section id="akademik" class="section hidden" style="padding:3rem 1rem;background:#fff;">
+  <div style="max-width:1100px;margin:0 auto;">
+    <h2 style="font-size:1.75rem;margin-bottom:1rem;text-align:center;">Akademik</h2>
+
+    <p style="text-align:center;color:#374151;margin-bottom:2rem;">
+      SMP Negeri 1 Cangkringan melaksanakan pembelajaran dengan menerapkan Kurikulum Merdeka,
+      berfokus pada pengembangan karakter, keterampilan abad 21, dan pembelajaran berbasis proyek.
+    </p>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;">
+      <div style="background:#fef3c7;padding:1.5rem;border-radius:.75rem;">
+        <h3 style="font-weight:700;color:#92400e;margin-bottom:.5rem;">Program Inovatif</h3>
+        <p style="color:#374151;">Pembelajaran berbasis proyek (P5), literasi digital, dan integrasi teknologi informasi untuk meningkatkan kompetensi siswa.</p>
+      </div>
+      <div style="background:#e0f2fe;padding:1.5rem;border-radius:.75rem;">
+        <h3 style="font-weight:700;color:#1e3a8a;margin-bottom:.5rem;">Ekstrakurikuler</h3>
+        <p style="color:#374151;">Beragam kegiatan seperti Pramuka, OSIS, PMR, Karya Ilmiah Remaja, Paduan Suara, Tari Tradisional, dan Robotika Sekolah.</p>
+      </div>
+      <div style="background:#dcfce7;padding:1.5rem;border-radius:.75rem;">
+        <h3 style="font-weight:700;color:#166534;margin-bottom:.5rem;">Bimbingan & Prestasi</h3>
+        <p style="color:#374151;">Pendampingan intensif bagi siswa berprestasi dalam ajang olimpiade, lomba akademik, dan kegiatan tingkat daerah maupun nasional.</p>
+      </div>
+    </div>
+
+    <!-- Submenu Fasilitas Sekolah -->
+    <div style="margin-top:3rem;">
+      <h3 style="font-size:1.5rem;font-weight:700;text-align:center;margin-bottom:1rem;color:#fb923c;">Fasilitas Sekolah</h3>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1rem;">
+        <div style="background:#fff7ed;padding:1rem;border-radius:.75rem;box-shadow:0 1px 3px rgba(0,0,0,0.1);">
+          <img src="fasilitas/labkomputer.jpg" alt="Lab Komputer" style="width:100%;border-radius:.5rem;margin-bottom:.5rem;">
+          <h4 style="font-weight:600;color:#92400e;">Laboratorium Komputer</h4>
+          <p style="font-size:.9rem;color:#374151;">Dilengkapi komputer dan jaringan internet untuk mendukung pembelajaran informatika dan literasi digital.</p>
+        </div>
+
+        <div style="background:#fff7ed;padding:1rem;border-radius:.75rem;box-shadow:0 1px 3px rgba(0,0,0,0.1);">
+          <img src="fasilitas/perpustakaan.jpg" alt="Perpustakaan" style="width:100%;border-radius:.5rem;margin-bottom:.5rem;">
+          <h4 style="font-weight:600;color:#92400e;">Perpustakaan Sekolah</h4>
+          <p style="font-size:.9rem;color:#374151;">Menyediakan koleksi buku pelajaran, fiksi, dan referensi digital untuk mendukung kegiatan literasi siswa.</p>
+        </div>
+
+        <div style="background:#fff7ed;padding:1rem;border-radius:.75rem;box-shadow:0 1px 3px rgba(0,0,0,0.1);">
+          <img src="fasilitas/labolahraga.jpg" alt="Lapangan Olahraga" style="width:100%;border-radius:.5rem;margin-bottom:.5rem;">
+          <h4 style="font-weight:600;color:#92400e;">Lapangan Olahraga</h4>
+          <p style="font-size:.9rem;color:#374151;">Area luas untuk kegiatan olahraga, senam, dan event sekolah, mendukung siswa hidup sehat dan aktif.</p>
+        </div>
+
+        <div style="background:#fff7ed;padding:1rem;border-radius:.75rem;box-shadow:0 1px 3px rgba(0,0,0,0.1);">
+          <img src="fasilitas/labipa.jpg" alt="Laboratorium IPA" style="width:100%;border-radius:.5rem;margin-bottom:.5rem;">
+          <h4 style="font-weight:600;color:#92400e;">Laboratorium IPA</h4>
+          <p style="font-size:.9rem;color:#374151;">Tempat praktik eksperimen dan pembelajaran sains untuk menumbuhkan rasa ingin tahu dan berpikir ilmiah.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+    </section>
+
+    <!-- GURU -->
+<section id="guru" class="section hidden" style="padding:3rem 1rem;background:#fff;">
+  <div style="max-width:1100px;margin:0 auto;text-align:center;">
+    <h2 style="font-size:1.75rem;margin-bottom:1rem;color:#fb923c;">Guru dan Tenaga Kependidikan</h2>
+    <p style="color:#374151;margin-bottom:2rem;">
+      Tenaga pendidik profesional yang berkomitmen membimbing siswa menuju prestasi dan karakter unggul.
+    </p>
+
+    <!-- Grid Guru -->
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.5rem;">
+
+      <!-- Guru 1 -->
+      <div style="background:#fff7ed;border-radius:1rem;box-shadow:0 4px 8px rgba(0,0,0,0.1);overflow:hidden;transition:.3s;">
+        <img src="guru/guru1.jpg" alt="Kepala Sekolah" style="width:100%;height:220px;object-fit:cover;">
+        <div style="padding:1rem;">
+          <h3 style="color:#fb923c;font-weight:700;">Sri Wahyuni, S.Pd., M.Pd.</h3>
+          <p style="font-size:.9rem;color:#6b7280;margin:.3rem 0;">Kepala Sekolah</p>
+          <p style="font-size:.85rem;color:#374151;">Berpengalaman lebih dari 15 tahun di bidang pendidikan, berfokus pada kepemimpinan dan inovasi pembelajaran.</p>
+        </div>
+      </div>
+
+      <!-- Guru 2 -->
+      <div style="background:#fff7ed;border-radius:1rem;box-shadow:0 4px 8px rgba(0,0,0,0.1);overflow:hidden;transition:.3s;">
+        <img src="guru/guru2.jpg" alt="Guru Bahasa Indonesia" style="width:100%;height:220px;object-fit:cover;">
+        <div style="padding:1rem;">
+          <h3 style="color:#fb923c;font-weight:700;">Wahyu Prasetyo, S.Pd.</h3>
+          <p style="font-size:.9rem;color:#6b7280;margin:.3rem 0;">Guru Bahasa Indonesia</p>
+          <p style="font-size:.85rem;color:#374151;">Mendorong literasi siswa melalui karya tulis dan lomba pidato di tingkat kabupaten dan provinsi.</p>
+        </div>
+      </div>
+
+      <!-- Guru 3 -->
+      <div style="background:#fff7ed;border-radius:1rem;box-shadow:0 4px 8px rgba(0,0,0,0.1);overflow:hidden;transition:.3s;">
+        <img src="guru/guru3.jpg" alt="Guru Matematika" style="width:100%;height:220px;object-fit:cover;">
+        <div style="padding:1rem;">
+          <h3 style="color:#fb923c;font-weight:700;">Rina Kusumawati, S.Pd.</h3>
+          <p style="font-size:.9rem;color:#6b7280;margin:.3rem 0;">Guru Matematika</p>
+          <p style="font-size:.85rem;color:#374151;">Mengembangkan pembelajaran kreatif berbasis permainan logika dan numerasi untuk meningkatkan minat belajar.</p>
+        </div>
+      </div>
+
+      <!-- Guru 4 -->
+      <div style="background:#fff7ed;border-radius:1rem;box-shadow:0 4px 8px rgba(0,0,0,0.1);overflow:hidden;transition:.3s;">
+        <img src="guru/guru4.jpg" alt="Guru IPA" style="width:100%;height:220px;object-fit:cover;">
+        <div style="padding:1rem;">
+          <h3 style="color:#fb923c;font-weight:700;">Agus Setiawan, S.Pd.</h3>
+          <p style="font-size:.9rem;color:#6b7280;margin:.3rem 0;">Guru IPA</p>
+          <p style="font-size:.85rem;color:#374151;">Ahli eksperimen sains sederhana dan pembimbing tim sains sekolah dalam berbagai kompetisi ilmiah.</p>
+        </div>
+      </div>
+
+      <!-- Guru 5 -->
+      <div style="background:#fff7ed;border-radius:1rem;box-shadow:0 4px 8px rgba(0,0,0,0.1);overflow:hidden;transition:.3s;">
+        <img src="guru/guru5.jpg" alt="Guru Informatika" style="width:100%;height:220px;object-fit:cover;">
+        <div style="padding:1rem;">
+          <h3 style="color:#fb923c;font-weight:700;">Wiby Wisnu Saputro, S.Kom.</h3>
+          <p style="font-size:.9rem;color:#6b7280;margin:.3rem 0;">Guru Informatika</p>
+          <p style="font-size:.85rem;color:#374151;">Mengenalkan coding, algoritma, dan literasi digital untuk menyiapkan siswa menghadapi dunia teknologi modern.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+    </section>
+
+    <!-- GALERI -->
+<section id="galeri" class="section hidden" style="padding:3rem 1rem;background:#fff;">
+  <div style="max-width:1100px;margin:0 auto;text-align:center;">
+    <h2 style="font-size:1.75rem;margin-bottom:1rem;color:#fb923c;">Galeri Kegiatan Sekolah</h2>
+    <p style="color:#374151;margin-bottom:2rem;">
+      Dokumentasi kegiatan belajar, perlombaan, dan kegiatan siswa di SMP Negeri 1 Cangkringan.
+    </p>
+
+    <!-- Grid Foto -->
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1rem;">
+
+      <!-- Foto 1 -->
+      <div style="background:#fff7ed;border-radius:.75rem;overflow:hidden;box-shadow:0 4px 6px rgba(0,0,0,0.1);transition:.3s;">
+        <img src="galeri/upacara.jpg" alt="Kegiatan Upacara" style="width:100%;height:200px;object-fit:cover;">
+        <div style="padding:.75rem;">
+          <h4 style="font-weight:600;color:#fb923c;">Upacara Bendera</h4>
+          <p style="font-size:.85rem;color:#374151;">Kegiatan rutin setiap Senin untuk menanamkan disiplin dan cinta tanah air.</p>
+        </div>
+      </div>
+
+      <!-- Foto 2 -->
+      <div style="background:#fff7ed;border-radius:.75rem;overflow:hidden;box-shadow:0 4px 6px rgba(0,0,0,0.1);transition:.3s;">
+        <img src="galeri/pentas-seni.jpg" alt="Pentas Seni" style="width:100%;height:200px;object-fit:cover;">
+        <div style="padding:.75rem;">
+          <h4 style="font-weight:600;color:#fb923c;">Pentas Seni</h4>
+          <p style="font-size:.85rem;color:#374151;">Ajang kreativitas siswa dalam bidang seni tari, musik, dan drama sekolah.</p>
+        </div>
+      </div>
+
+      <!-- Foto 3 -->
+      <div style="background:#fff7ed;border-radius:.75rem;overflow:hidden;box-shadow:0 4px 6px rgba(0,0,0,0.1);transition:.3s;">
+        <img src="galeri/pramuka.jpg" alt="Kegiatan Pramuka" style="width:100%;height:200px;object-fit:cover;">
+        <div style="padding:.75rem;">
+          <h4 style="font-weight:600;color:#fb923c;">Pramuka</h4>
+          <p style="font-size:.85rem;color:#374151;">Melatih kemandirian, kepemimpinan, dan kerja sama antar siswa.</p>
+        </div>
+      </div>
+
+      <!-- Foto 4 -->
+      <div style="background:#fff7ed;border-radius:.75rem;overflow:hidden;box-shadow:0 4px 6px rgba(0,0,0,0.1);transition:.3s;">
+        <img src="galeri/lomba.jpg" alt="Lomba Akademik" style="width:100%;height:200px;object-fit:cover;">
+        <div style="padding:.75rem;">
+          <h4 style="font-weight:600;color:#fb923c;">Lomba Akademik</h4>
+          <p style="font-size:.85rem;color:#374151;">Siswa berpartisipasi dalam berbagai olimpiade dan lomba antar sekolah.</p>
+        </div>
+      </div>
+
+      <!-- Foto 5 -->
+      <div style="background:#fff7ed;border-radius:.75rem;overflow:hidden;box-shadow:0 4px 6px rgba(0,0,0,0.1);transition:.3s;">
+        <img src="galeri/bakti-sosial.jpg" alt="Bakti Sosial" style="width:100%;height:200px;object-fit:cover;">
+        <div style="padding:.75rem;">
+          <h4 style="font-weight:600;color:#fb923c;">Bakti Sosial</h4>
+          <p style="font-size:.85rem;color:#374151;">Kegiatan sosial untuk menumbuhkan empati dan kepedulian siswa terhadap masyarakat.</p>
+        </div>
+      </div>
+
+      <!-- Foto 6 -->
+      <div style="background:#fff7ed;border-radius:.75rem;overflow:hidden;box-shadow:0 4px 6px rgba(0,0,0,0.1);transition:.3s;">
+        <img src="galeri/projek-p5.jpg" alt="Projek P5" style="width:100%;height:200px;object-fit:cover;">
+        <div style="padding:.75rem;">
+          <h4 style="font-weight:600;color:#fb923c;">Projek P5</h4>
+          <p style="font-size:.85rem;color:#374151;">Implementasi Kurikulum Merdeka melalui kegiatan Projek Penguatan Profil Pelajar Pancasila.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+    </section>
+
+   <!-- DATA SISWA -->
+<section id="datasiswa" class="section hidden" style="padding:3rem 1rem;background:#fff;">
+  <div style="max-width:1100px;margin:0 auto;text-align:center;">
+    <h2 style="font-size:1.75rem;margin-bottom:1rem">Data Siswa</h2>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin-top:1rem;">
+      <button onclick="bukaPDF('data_siswa/kelas7A.pdf')" style="background:#fb923c;color:#fff;padding:.6rem;border-radius:.5rem;border:none;cursor:pointer;font-weight:600">Kelas 7A</button>
+      <button onclick="bukaPDF('data_siswa/kelas7B.pdf')" style="background:#fb923c;color:#fff;padding:.6rem;border-radius:.5rem;border:none;cursor:pointer;font-weight:600">Kelas 7B</button>
+      <button onclick="bukaPDF('data_siswa/kelas7C.pdf')" style="background:#fb923c;color:#fff;padding:.6rem;border-radius:.5rem;border:none;cursor:pointer;font-weight:600">Kelas 7C</button>
+      <button onclick="bukaPDF('data_siswa/kelas7D.pdf')" style="background:#fb923c;color:#fff;padding:.6rem;border-radius:.5rem;border:none;cursor:pointer;font-weight:600">Kelas 7D</button>
+      <button onclick="bukaPDF('data_siswa/kelas8A.pdf')" style="background:#fb923c;color:#fff;padding:.6rem;border-radius:.5rem;border:none;cursor:pointer;font-weight:600">Kelas 8A</button>
+      <button onclick="bukaPDF('data_siswa/kelas8B.pdf')" style="background:#fb923c;color:#fff;padding:.6rem;border-radius:.5rem;border:none;cursor:pointer;font-weight:600">Kelas 8B</button>
+      <button onclick="bukaPDF('data_siswa/kelas8C.pdf')" style="background:#fb923c;color:#fff;padding:.6rem;border-radius:.5rem;border:none;cursor:pointer;font-weight:600">Kelas 8C</button>
+      <button onclick="bukaPDF('data_siswa/kelas8D.pdf')" style="background:#fb923c;color:#fff;padding:.6rem;border-radius:.5rem;border:none;cursor:pointer;font-weight:600">Kelas 8D</button>
+      <button onclick="bukaPDF('data_siswa/kelas9A.pdf')" style="background:#fb923c;color:#fff;padding:.6rem;border-radius:.5rem;border:none;cursor:pointer;font-weight:600">Kelas 9A</button>
+      <button onclick="bukaPDF('data_siswa/kelas9B.pdf')" style="background:#fb923c;color:#fff;padding:.6rem;border-radius:.5rem;border:none;cursor:pointer;font-weight:600">Kelas 9B</button>
+      <button onclick="bukaPDF('data_siswa/kelas9C.pdf')" style="background:#fb923c;color:#fff;padding:.6rem;border-radius:.5rem;border:none;cursor:pointer;font-weight:600">Kelas 9C</button>
+      <button onclick="bukaPDF('data_siswa/kelas9D.pdf')" style="background:#fb923c;color:#fff;padding:.6rem;border-radius:.5rem;border:none;cursor:pointer;font-weight:600">Kelas 9D</button>
+    </div>
+
+    <div id="pdfViewer" style="margin-top:1.5rem;display:none;">
+      <iframe id="pdfFrame" src="" width="100%" height="650"></iframe>
+    </div>
+  </div>
+</section>
+
+
+  </main>
+
+  <footer style="background:#1f2937;color:#fff;padding:2rem;text-align:center;margin-top:2rem;">
+    &copy; 2025 SMP Negeri 1 Cangkringan
+  </footer>
+
+  <script>
+    function showSection(id) {
+      document.querySelectorAll('.section').forEach(s=>s.classList.add('hidden'));
+      var el = document.getElementById(id);
+      if(!el) return;
+      el.classList.remove('hidden');
+      window.scrollTo(0,0);
+      document.querySelector('.mobile-menu').classList.add('hidden');
+    }
+    function bukaPDF(path) {
+      var viewer = document.getElementById('pdfViewer');
+      var frame = document.getElementById('pdfFrame');
+      frame.src = path;
+      viewer.style.display = 'block';
+      window.scrollTo(0, viewer.offsetTop - 20);
+    }
+    // show home by default
+    document.addEventListener('DOMContentLoaded', function(){ showSection('home'); });
+  </script>
+</body>
+</html>
